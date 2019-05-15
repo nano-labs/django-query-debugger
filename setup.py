@@ -21,6 +21,7 @@ setup(
 
     description='Prints queries executed on you projects along with line traceback.',
     long_description=long_description,
+    long_description_content_type='text/markdown',
 
     # The project's main homepage.
     url='https://github.com/nano-labs/django-query-debugger',

@@ -1,1 +1,1 @@
-from query_debugger import *
+from .query_debugger import *
