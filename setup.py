@@ -24,7 +24,7 @@ setup(
 
     # The project's main homepage.
     url='https://github.com/nano-labs/django-query-debugger',
-    download_url='https://github.com/nano-labs/django-query-debugger/archive/release/0.0.1.zip',
+    download_url='https://github.com/nano-labs/django-query-debugger/archive/0.0.2.zip',
 
     # Author details
     author='Fabio Pachelli Pacheco',
