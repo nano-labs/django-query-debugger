@@ -21,8 +21,17 @@ On your production environment. This guy is working fine but you dont need to in
 
 
 ## How To
+- Install with
+```
+pip install django-query-debugger
+```
 
-Just import this file. See the [Usage](#usage) section for more information
+-Then just import this lib with
+
+```python
+import query_debugger
+```
+See the [Usage](#usage) section for more information
 
 #### But remember:
 
