@@ -86,31 +86,21 @@ Quit the server with CONTROL-C.
 >>> import query_debugger
 >>> from myapp.models import MyModel
 >>> MyModel.objects.count()
-/Users/fabio/envs/py36/lib/python3.6/site-packages/traitlets/config/application.py Line: 658
-  /Users/fabio/envs/py36/lib/python3.6/site-packages/IPython/terminal/ipapp.py Line: 356
-    /Users/fabio/envs/py36/lib/python3.6/site-packages/IPython/terminal/interactiveshell.py Line: 489
-      /Users/fabio/envs/py36/lib/python3.6/site-packages/IPython/core/interactiveshell.py Line: 3291
-        <ipython-input-3-0ccef3f04b0a> Line: 1
-          /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/models/query.py Line: 383
-            /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/models/sql/query.py Line: 483
-              /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/models/sql/compiler.py Line: 1061
-                /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/backends/utils.py Line: 100
-                  SELECT COUNT(*) AS "__count" FROM "myapp_mymodel"
+  /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/models/sql/query.py Line: 483
+    /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/models/sql/compiler.py Line: 1061
+      /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/backends/utils.py Line: 100
+        SELECT COUNT(*) AS "__count" FROM "myapp_mymodel"
 3
 ```
 
 ### Traceback feature
 - The default behavior is to traceback only queries trigged by your code, ommiting queries trigged by the framework or libraries. However, if you want you can expand to any querie trigged anywhere like this:
 
-```python
-"""myproject/myapp/views.py"""
-import query_debugger
-query_debugger.everywhere()
+#### Max Depth
 
-...
-```
+A max_depth argument may be added to query_debugger.everywhere(max_depth=10) or query_debugger.here(max_depth=10) to change how deep the traceback will go.
 
-Your server output will look like this:
+Ex: max_depth=50
 ```
 [12:03:23]myproject$ ./manage.py runserver
 Performing system checks...
@@ -143,7 +133,53 @@ Quit the server with CONTROL-C.
                       SELECT "myapp_mymodel"."id", "myapp_mymodel"."name" FROM "myapp_mymodel" WHERE "myapp_mymodel"."id" = 1
 ```
 
-Or narrow down to the file where you imported the debugger:
+Ex: max_depth=0
+```
+[12:03:23]myproject$ ./manage.py runserver
+Performing system checks...
+System check identified no issues (0 silenced).
+  SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"
+May 15, 2019 - 11:15:57
+Django version 2.1, using settings 'thundera.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+[11:03:38] INFO "GET /mymodel/1 HTTP/1.1" 200 38346
+  SELECT "myapp_mymodel"."id", "myapp_mymodel"."name" FROM "myapp_mymodel" WHERE "myapp_mymodel"."id" = 1
+```
+
+#### everywhere()
+
+```python
+"""myproject/myapp/views.py"""
+import query_debugger
+query_debugger.everywhere()
+
+...
+```
+
+Your server output will look like this:
+```
+[12:03:23]myproject$ ./manage.py runserver
+Performing system checks...
+System check identified no issues (0 silenced).
+  /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/models/query.py Line: 138
+    /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/models/sql/compiler.py Line: 1061
+      /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/backends/utils.py Line: 100
+        SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"
+May 15, 2019 - 11:15:57
+Django version 2.1, using settings 'thundera.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+[11:03:38] INFO "GET /mymodel/1 HTTP/1.1" 200 38346
+  /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/models/query.py Line: 54
+    /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/models/sql/compiler.py Line: 1061
+      /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/backends/utils.py Line: 100
+        SELECT "myapp_mymodel"."id", "myapp_mymodel"."name" FROM "myapp_mymodel" WHERE "myapp_mymodel"."id" = 1
+```
+
+#### here()
+
+Narrow down to the file where you imported the debugger:
 ```python
 """myproject/myapp/views.py"""
 import query_debugger
