@@ -105,32 +105,19 @@ Ex: max_depth=50
 [12:03:23]myproject$ ./manage.py runserver
 Performing system checks...
 System check identified no issues (0 silenced).
-/Users/fabio/envs/py36/lib/python3.6/site-packages/django/utils/autoreload.py Line: 225
-  /Users/fabio/envs/py36/lib/python3.6/site-packages/django/core/management/commands/runserver.py Line: 120
-    /Users/fabio/envs/py36/lib/python3.6/site-packages/django/core/management/base.py Line: 442
-      /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/migrations/executor.py Line: 18
-        /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/migrations/loader.py Line: 209
-          /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/migrations/recorder.py Line: 62
-            /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/models/query.py Line: 138
-              /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/models/sql/compiler.py Line: 1061
-                /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/backends/utils.py Line: 100
-                  SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"
+  /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/models/query.py Line: 138
+    /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/models/sql/compiler.py Line: 1061
+      /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/backends/utils.py Line: 100
+        SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"
 May 15, 2019 - 11:15:57
 Django version 2.1, using settings 'thundera.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 [11:03:38] INFO "GET /mymodel/1 HTTP/1.1" 200 38346
-  /Users/fabio/envs/py36/lib/python3.6/site-packages/django/contrib/auth/decorators.py Line: 20
-    /Users/fabio/projects/myproject/myapp/views.py Line: 7
-      /Users/fabio/envs/py36/lib/python3.6/site-packages/django/utils/functional.py Line: 347
-        /Users/fabio/envs/py36/lib/python3.6/site-packages/django/contrib/auth/middleware.py Line: 12
-          /Users/fabio/envs/py36/lib/python3.6/site-packages/django/contrib/auth/__init__.py Line: 189
-            /Users/fabio/envs/py36/lib/python3.6/site-packages/django/contrib/auth/backends.py Line: 98
-              /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/models/manager.py Line: 82
-                /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/models/query.py Line: 54
-                  /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/models/sql/compiler.py Line: 1061
-                    /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/backends/utils.py Line: 100
-                      SELECT "myapp_mymodel"."id", "myapp_mymodel"."name" FROM "myapp_mymodel" WHERE "myapp_mymodel"."id" = 1
+  /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/models/query.py Line: 54
+    /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/models/sql/compiler.py Line: 1061
+      /Users/fabio/envs/py36/lib/python3.6/site-packages/django/db/backends/utils.py Line: 100
+        SELECT "myapp_mymodel"."id", "myapp_mymodel"."name" FROM "myapp_mymodel" WHERE "myapp_mymodel"."id" = 1
 ```
 
 Ex: max_depth=0
